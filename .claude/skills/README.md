@@ -1,6 +1,6 @@
 # Skills
 
-Fifteen skills live here, installed two different ways. See "Two install
+Sixteen skills live here, installed two different ways. See "Two install
 layouts" below.
 
 ## Design taste skills (13)
@@ -61,7 +61,7 @@ commit in this file. Upstream `research/`, `examples/`, `scripts/`, and the
 self-contained.
 
 
-## Skills installed via the `skills` CLI (2)
+## Skills installed via the `skills` CLI (3)
 
 `frontend-design` comes from [anthropics/skills](https://github.com/anthropics/skills)
 (Apache 2.0, `LICENSE.txt` sits beside its `SKILL.md`). It covers aesthetic
@@ -88,6 +88,33 @@ npx skills add https://github.com/mattpocock/skills --skill domain-modeling
 
 It also expects a `CONTEXT.md` domain glossary and ADRs in `docs/adr/`; neither
 exists in this repo yet.
+
+`design-mobile-apps` comes from
+[designed-by-ai/skills](https://github.com/designed-by-ai/skills). Unlike the
+other two it is not standalone guidance — it is a client for
+[sleek.design](https://sleek.design), a commercial mobile-app design service,
+and it does nothing without that service. Before relying on it:
+
+- **It needs a `SLEEK_API_KEY`**, which is not set in this environment. The skill
+  can obtain one through a device flow (`/api/v1/device/start` + `/poll`) or via
+  `https://sleek.design/agents/setup`.
+- **It is a paid service.** The skill states free accounts get one-time trial
+  credits worth roughly one design run, and that sustained use needs a Pro plan
+  it prices at $49.99/month or $360/year. Those figures are the skill's own
+  claims, unverified here.
+- **Its declared host allowlist is incomplete.** The frontmatter says
+  `allowed-hosts: https://sleek.design`, but the body also directs fetches to
+  `https://api.iconify.design` (icon SVGs) and Google Fonts, and embeds an image
+  from `raw.githubusercontent.com`. Whatever enforces that allowlist will not
+  match what the skill actually does.
+- **Provenance is worth a look.** It was installed from `designed-by-ai/skills`,
+  but its hero image points at `sleekdotdesign/agent-skills` — so this copy is a
+  third-party mirror of the vendor's own skill rather than the vendor repo.
+- **No licence file ships with it**, unlike `frontend-design`.
+
+Nothing in it is hostile: it is an API reference plus usage discipline, with no
+destructive or data-exfiltrating instructions. But it sends your design briefs,
+and any `imageUrls` you pass, to a third-party service.
 
 ## Two install layouts
 
@@ -118,3 +145,8 @@ choreography and `high-end-visual-design` fixes specific fonts and shadows.
 
 Name the skill you want explicitly (`/frontend-design`) rather than relying on
 description matching, or narrow the descriptions of the ones you keep.
+
+`design-mobile-apps` and `imagegen-frontend-mobile` both claim mobile app screen
+design, by very different means: the first calls out to sleek.design and needs a
+paid API key, the second generates images locally with no external service. A
+request like "design my app's screens" matches both. Name the one you want.
