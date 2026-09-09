@@ -1,6 +1,6 @@
 # Skills
 
-Fourteen skills live here, installed two different ways. See "Two install
+Fifteen skills live here, installed two different ways. See "Two install
 layouts" below.
 
 ## Design taste skills (13)
@@ -61,18 +61,39 @@ commit in this file. Upstream `research/`, `examples/`, `scripts/`, and the
 self-contained.
 
 
-## frontend-design (1)
+## Skills installed via the `skills` CLI (2)
 
 `frontend-design` comes from [anthropics/skills](https://github.com/anthropics/skills)
-(Apache 2.0, `LICENSE.txt` sits beside its `SKILL.md`), installed with
-`npx skills add`. It covers aesthetic direction, typography, and copywriting for
-new or reshaped UI.
+(Apache 2.0, `LICENSE.txt` sits beside its `SKILL.md`). It covers aesthetic
+direction, typography, and copywriting for new or reshaped UI.
+
+`improve-codebase-architecture` comes from
+[mattpocock/skills](https://github.com/mattpocock/skills). It scans a codebase
+for deepening opportunities, renders them as a visual HTML report, then walks
+through whichever one you pick. It sets `disable-model-invocation: true`, so it
+never triggers on its own — invoke it as `/improve-codebase-architecture`.
+
+That skill delegates to three sibling skills from the same repo that are **not
+installed here**: `codebase-design` (its architecture vocabulary),
+`grilling` (the decision-tree walkthrough after you pick a candidate), and
+`domain-modeling` (keeping `CONTEXT.md` current). Without them the vocabulary
+has to be pulled in by hand and the follow-up steps degrade. Install them the
+same way if you want the full flow:
+
+```
+npx skills add https://github.com/mattpocock/skills --skill codebase-design
+npx skills add https://github.com/mattpocock/skills --skill grilling
+npx skills add https://github.com/mattpocock/skills --skill domain-modeling
+```
+
+It also expects a `CONTEXT.md` domain glossary and ADRs in `docs/adr/`; neither
+exists in this repo yet.
 
 ## Two install layouts
 
 The two sources landed differently, and both are kept as-is:
 
-| | Design taste skills | `frontend-design` |
+| | Design taste skills | CLI-installed skills |
 |---|---|---|
 | Installed by | manual copy | `npx skills add` |
 | Files live in | `.claude/skills/<name>/` | `.agents/skills/<name>/` |
