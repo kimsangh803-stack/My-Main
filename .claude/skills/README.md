@@ -5,9 +5,13 @@ layouts" below.
 
 ## Design taste skills (13)
 
-Thirteen frontend/design skills vendored from
+Thirteen frontend/design skills from
 [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill)
-(MIT — see `LICENSE-taste-skill.txt`), pinned at upstream commit `ccbc156`.
+(MIT — see `LICENSE-taste-skill.txt`). Twelve are vendored copies pinned at
+upstream commit `ccbc156`; `high-end-visual-design` was later reinstalled with
+`npx skills add`, so it now lives in `.agents/skills/` and is hash-pinned in
+`skills-lock.json` like the rest of the CLI-installed set. Its content is
+byte-identical to the copy it replaced.
 
 Claude Code auto-discovers everything under `.claude/skills/`, so these load in
 any session opened in this repo. Invoke one by name (`/design-taste-frontend`)
@@ -61,7 +65,7 @@ commit in this file. Upstream `research/`, `examples/`, `scripts/`, and the
 self-contained.
 
 
-## Skills installed via the `skills` CLI (3)
+## Skills installed via the `skills` CLI (4)
 
 `frontend-design` comes from [anthropics/skills](https://github.com/anthropics/skills)
 (Apache 2.0, `LICENSE.txt` sits beside its `SKILL.md`). It covers aesthetic
@@ -88,6 +92,12 @@ npx skills add https://github.com/mattpocock/skills --skill domain-modeling
 
 It also expects a `CONTEXT.md` domain glossary and ADRs in `docs/adr/`; neither
 exists in this repo yet.
+
+`high-end-visual-design` comes from
+[Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill), the same source
+as the twelve vendored design-taste skills — it is listed with them above.
+Reinstalling it through the CLI replaced its vendored directory with a symlink;
+the content did not change.
 
 `design-mobile-apps` comes from
 [designed-by-ai/skills](https://github.com/designed-by-ai/skills). Unlike the
@@ -120,17 +130,24 @@ and any `imageUrls` you pass, to a third-party service.
 
 The two sources landed differently, and both are kept as-is:
 
-| | Design taste skills | CLI-installed skills |
+| | Vendored copies (12) | CLI-installed (4) |
 |---|---|---|
 | Installed by | manual copy | `npx skills add` |
 | Files live in | `.claude/skills/<name>/` | `.agents/skills/<name>/` |
 | Discovered via | the directory itself | relative symlink from `.claude/skills/` |
 | Pinned by | upstream commit noted above | `skills-lock.json` (content hash) |
 
+**Reinstalling a vendored skill through the CLI silently replaces it.** Running
+`npx skills add` for a name that already exists as a real directory under
+`.claude/skills/` deletes that directory and puts a symlink in its place; the
+CLI reports this only as `overwrites: Claude Code` in its summary. That is how
+`high-end-visual-design` moved between layouts. Any local edits to a vendored
+skill would be lost this way, so commit before reinstalling.
+
 `.agents/skills/` is the tool-agnostic location the `skills` CLI installs to, so
 those skills are readable by other agent tools too; the symlink is relative, so
-it survives a clone. Nothing breaks by mixing the layouts — just know that
-`.claude/skills/frontend-design` is a link, not a directory, and that only
+it survives a clone. Nothing breaks by mixing the layouts — just know that four
+entries under `.claude/skills/` are links rather than directories, and that only
 `.agents/`-installed skills are tracked in `skills-lock.json`.
 
 ## Overlapping triggers
