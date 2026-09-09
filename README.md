@@ -1,6 +1,8 @@
 # My-Main
 
-Working repository. Frontend/design skills for Claude Code live in
-[`.claude/skills/`](.claude/skills/README.md) — thirteen skills vendored from
-[Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) (MIT). They
-load automatically in any Claude Code session opened here.
+Working repository. Skills for Claude Code live in
+[`.claude/skills/`](.claude/skills/README.md) — fourteen of them: thirteen
+design-taste skills vendored from
+[Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) (MIT), plus
+`frontend-design` from [anthropics/skills](https://github.com/anthropics/skills)
+(Apache 2.0). They load automatically in any Claude Code session opened here.
