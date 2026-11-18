@@ -1,6 +1,6 @@
 ---
 name: design-taste-frontend
-description: Anti-slop frontend skill for landing pages, portfolios, and redesigns. The agent reads the brief, infers the right design direction, and ships interfaces that do not look templated. Real design systems when applicable, audit-first on redesigns, strict pre-flight check.
+description: Build marketing-facing web UI in code under mechanical anti-slop gates. Maps the brief onto a real named design system (Material, Carbon, Fluent, Polaris, shadcn and others, with install commands), tunes variance/motion/density dials, and enforces a pre-flight check with hard-fail rules such as the em-dash ban and the eyebrow-label cap. Select when the user wants that rule-enforced system, or names this skill. For general visual direction on a new page use frontend-design instead. NOT for admin dashboards, dense product UI, data tables, multi-step forms or native mobile. NOT for image-only deliverables. NOT for upgrading an existing codebase (use redesign-existing-projects). NOT when the user names a specific aesthetic (use that style's skill).
 ---
 
 # tasteskill: Anti-Slop Frontend Skill

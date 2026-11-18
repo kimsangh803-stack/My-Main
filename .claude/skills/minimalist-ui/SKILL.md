@@ -1,6 +1,6 @@
 ---
 name: minimalist-ui
-description: Clean editorial-style interfaces. Warm monochrome palette, typographic contrast, flat bento grids, muted pastels. No gradients, no heavy shadows.
+description: Applies one named aesthetic, clean editorial minimalism in the Notion or Linear register with warm monochrome, typographic contrast, flat bento grids, muted pastel spot colors, restrained corner radii, no gradients, no heavy shadows and no pill buttons. Select only when the user asks for a minimal, clean, editorial or Notion/Linear-like interface. NOT for dark-glass luxury, brutalist or motion-heavy looks. NOT for image-only deliverables.
 ---
 
 # Protocol: Premium Utilitarian Minimalism UI Architect

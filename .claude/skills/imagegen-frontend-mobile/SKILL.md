@@ -1,6 +1,6 @@
 ---
 name: imagegen-frontend-mobile
-description: Elite mobile app image-generation skill for creating premium, app-native screen concepts and flows. Designed for iOS, Android, and cross-platform mobile products. Prioritizes clean hierarchy, comfortably readable text, strong multi-screen consistency, controlled color palettes, non-generic creative direction, textured surfaces, image-led composition, tasteful custom iconography, and clean phone mockup framing. By default, screens should be shown inside a subtle premium iPhone or similar phone mockup with a visible frame, while the main focus stays on the app content itself. This skill generates images only. It does not write code.
+description: Generate mobile app screen design images only, iOS and Android screens and flows shown in a phone mockup frame, never code. Runs on the session's own image tool and calls no external design service. Select when the user wants visual concepts for app screens before implementation. NOT for writing code. NOT for websites or desktop dashboards. NOT for brand-identity boards (use brandkit). NOT for sleek.design projects (use design-mobile-apps).
 ---
 
 # CORE DIRECTIVE: PREMIUM MOBILE APP IMAGE DIRECTION

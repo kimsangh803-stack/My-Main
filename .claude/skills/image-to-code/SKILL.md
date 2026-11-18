@@ -1,6 +1,6 @@
 ---
 name: image-to-code
-description: Elite website image-to-code skill for Codex. For visually important web tasks, it must first generate the design image(s) itself, deeply analyze them, then implement the website to match them as closely as possible. In Codex, it must prefer large, readable, section-specific images instead of tiny compressed boards, generate fresh standalone images for sections or detail views instead of cropping old ones, avoid lazy under-generation, avoid cards-inside-cards-inside-cards UI, and keep the hero clean, spacious, readable, and visible on a small laptop.
+description: Implement a website in code from design images. If the user supplies a mockup or screenshot, that image is the source, so extract type, spacing, color, components and copy from it and build to match. If no image is supplied, generate the reference images first and then implement. Written for Codex, and its image-count rules are Codex-specific. Select when a design image is the source of truth for the build. NOT for image-only deliverables (use imagegen-frontend-web). NOT for brief-only builds with no image involved.
 ---
 
 # CORE DIRECTIVE: IMAGE-FIRST WEBSITE DESIGN TO CODE
@@ -127,6 +127,17 @@ Do not:
 
 The image is the design source.
 The code is the translation layer.
+
+### 2.A WHEN THE USER SUPPLIES THE IMAGE
+
+If the user provides their own mockup, screenshot, or design file, that image is the source. Do not generate a replacement for it.
+
+1. analyze the supplied image to the same standard as Section 9
+2. extract its design system with the rules in Sections 21 to 25, reading "the generated image" there as "the supplied image"
+3. implement to match it
+4. generate an extra image only to cover a gap the supplied image does not show (an omitted section, or detail too small to read), and say which gap it fills
+
+The mandatory-generation rule above applies only when no image was supplied.
 
 ---
 

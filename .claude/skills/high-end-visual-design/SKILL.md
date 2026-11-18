@@ -1,6 +1,6 @@
 ---
 name: high-end-visual-design
-description: Teaches the AI to design like a high-end agency. Defines the exact fonts, spacing, shadows, card structures, and animations that make a website feel expensive. Blocks all the common defaults that make AI designs look cheap or generic.
+description: Applies one named aesthetic, a dark glassy expensive-agency look with deep near-black grounds, glass panels, nested bezel enclosures, pill buttons, eyebrow tag labels, ultra-light icons and oversized section padding. Select only when the user asks for this dark, glass or luxury look by name or by clear description. NOT the default for a generic make-it-look-premium request. NOT for light, editorial or minimal looks (use minimalist-ui). NOT for image-only deliverables.
 ---
 
 # Agent Skill: Principal UI/UX Architect & Motion Choreographer (Awwwards-Tier)

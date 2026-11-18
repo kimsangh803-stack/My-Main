@@ -1,6 +1,6 @@
 ---
 name: full-output-enforcement
-description: Overrides default LLM truncation behavior. Enforces complete code generation, bans placeholder patterns, and handles token-limit splits cleanly. Apply to any task requiring exhaustive, unabridged output.
+description: Output-completeness discipline, not a design skill. Bans truncation, placeholder comments and rest-unchanged elisions, and handles token-limit splits cleanly. Select as an additional constraint on any task that must emit complete, unabridged code or text. Never select it as the design direction for a request.
 ---
 
 # Full-Output Enforcement

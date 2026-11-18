@@ -1,6 +1,6 @@
 ---
 name: brandkit
-description: Premium brand-kit image generation skill for creating high-end brand-guidelines boards, logo systems, identity decks, and visual-world presentations. Trained for minimalist, cinematic, editorial, dark-tech, luxury, cultural, security, gaming, developer-tool, and consumer-app brand systems. Optimized for intentional logo concepting, refined composition, sparse typography, strong symbolic meaning, premium mockups, art-directed imagery, and flexible grid layouts.
+description: Generate brand-identity images only, including logo concept systems, brand-guideline boards, color and type systems, identity decks and premium mockups. Never code. Select when the deliverable is brand or identity artwork. NOT for UI screens or website sections (use the imagegen-frontend skills). NOT for applying an existing brand system to code. NOT for writing a design-system document (use stitch-design-taste).
 ---
 
 # BRANDKIT IMAGE GENERATION SKILL
