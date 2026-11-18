@@ -176,3 +176,24 @@ Apply changes in this order for maximum visual impact with minimum risk:
 - If the project uses Tailwind, check the version (v3 vs v4) before modifying config.
 - If the project has no framework, use vanilla CSS.
 - Keep changes reviewable and focused. Small, targeted improvements over big rewrites.
+
+
+---
+
+## RULE OWNERSHIP
+
+Rules in this file that also appear in other skills are copies. The canonical
+owner of each is listed below. If a copy here differs from its canon, **the
+canon wins** (priority P3 beats P4). See "Shared design rules" in
+`../README.md` for the full priority ladder and the P0 protections that no
+aesthetic exception may override.
+
+| Rule here | Canonical owner |
+|---|---|
+| C1 font replacement (Design Audit) | `design-taste-frontend/SKILL.md` §4 |
+| C3 purple / blue AI gradient (Design Audit) | `design-taste-frontend/SKILL.md` §4 |
+| C5 shadow fixes (Design Audit) | `design-taste-frontend/SKILL.md` §4 |
+| C10 placeholder-content bans (Design Audit) | `design-taste-frontend/SKILL.md` §9 |
+| C16d centered-hero ban (Design Audit) | `design-taste-frontend/SKILL.md` §4 |
+
+The Strategic Omissions block and the 116-line audit are unique to this file and have no canon elsewhere.

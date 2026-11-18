@@ -1237,3 +1237,22 @@ The result should be:
 - and strong as implemented frontend
 
 The final outcome should look like a top-tier website concept translated faithfully into real code, not a tiny unreadable design board and not a generic coded reinterpretation.
+
+
+---
+
+## RULE OWNERSHIP
+
+Rules in this file that also appear in other skills are copies. The canonical
+owner of each is listed below. If a copy here differs from its canon, **the
+canon wins** (priority P3 beats P4). See "Shared design rules" in
+`../README.md` for the full priority ladder and the P0 protections that no
+aesthetic exception may override.
+
+| Rule here | Canonical owner |
+|---|---|
+| C13 do-not-crop rule (§5) | **this file** - canonical owner; `imagegen-frontend-mobile` §5 is the same rule with nouns swapped |
+| C16b nested-container ban (§16) | **this file** - canonical owner |
+| C11 anti-AI-slop rules (§29) | `imagegen-frontend-web/SKILL.md` §8 |
+| C12 Variation Engine (§12, a subset) | `imagegen-frontend-web/SKILL.md` §2 |
+| C10 placeholder-content bans (§29) | `design-taste-frontend/SKILL.md` §9 |

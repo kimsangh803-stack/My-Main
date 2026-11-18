@@ -215,27 +215,142 @@ design: the first calls out to sleek.design and needs a paid API key, the second
 generates images locally with no external service. Their descriptions now name
 each other, but if you want a specific one, say so.
 
-## Follow-up: shared design rules (Candidate 2)
+## Shared design rules
 
-Routing is now separated, but the **rules themselves still have no owner.** The
-same rule is restated across up to eight skills — 17 duplicated clusters in all
-— and the copies contradict each other. There are only two cross-references in
-the whole library, which is why every shared rule drifted independently.
+The same design rule is restated across up to eight skills — 17 clusters in all,
+and the copies had drifted into contradiction. The structure here is **one
+canonical owner per rule, with an explicit priority order**. Duplicate text is
+left in place; each copy now carries a pointer to its canon in a
+`## RULE OWNERSHIP` section at the end of its `SKILL.md`.
 
-Known contradictions, none of them resolved here:
+### Priority ladder
 
-| Rule | Bans it | Prescribes it |
+| | | |
 |---|---|---|
-| Inter / Helvetica | 8 skills | `industrial-brutalist-ui:28`, `minimalist-ui:26` |
-| purple "AI" gradients | 9 skills | `high-end-visual-design:25` |
-| infinite micro-motion | `design-taste-frontend:358` | `design-taste-frontend-v1:70,207`, `stitch-design-taste:92`, `stitch-design-taste/DESIGN.md:95` |
-| gradients | `minimalist-ui:3,18` | `minimalist-ui:67,74,84` (same file) |
-| GSAP everywhere | `design-taste-frontend:360`, `design-taste-frontend-v1:129`, `high-end-visual-design:70` | `gpt-taste:47` |
-| `py-24` minimum | `high-end-visual-design:51`, `gpt-taste:29`, `minimalist-ui:79` | `design-taste-frontend:566` (tight at density 8–10) |
-| em-dash | `design-taste-frontend:685` | `stitch-design-taste/DESIGN.md` carries 41 of them |
+| **P0** | **Protected constraints — nothing overrides these** | Accessibility (contrast, focus visibility, `prefers-reduced-motion`, semantics), functional correctness, security, and required technical constraints (dependency checks before importing a library, viewport stability, no scroll-repaint patterns, animation cleanup). An aesthetic exception that would break one of these is refused, not granted. |
+| P1 | The user's explicit requirement | The brief wins over the canon. |
+| P2 | A declared exception of the selected aesthetic skill | Registered in that skill's `RULE OWNERSHIP` section, active only while that skill is selected. |
+| P3 | The canonical rule | The default for every other request. |
+| P4 | A copy of the rule left in another skill | If it differs from the canon, the canon wins. |
 
-Candidate 2 should decide, per cluster, **which skill owns the rule, what
-precedence applies when two disagree, and how an exception is declared** — and
-connect that ownership to `design-taste-frontend`'s pre-flight checks, which are
-the only mechanical enforcement point in the library. Nothing in this section
-has been implemented.
+P2 beating P3 is safe because routing (see "Routing") only selects an aesthetic
+skill when the user asked for that look by name — so by the time an exception
+fires, P1 has effectively already been satisfied.
+
+### Canonical owners
+
+| Cluster | Rule | Canonical owner | Copies |
+|---|---|---|---|
+| C1 | banned typefaces / Inter | `design-taste-frontend` §4 | 9 |
+| C2 | em-dash ban (page copy only) | `design-taste-frontend` §9.G | 1 |
+| C3 | AI-purple / LILA | `design-taste-frontend` §4 | 9 |
+| C4 | gradient policy | `imagegen-frontend-web` §13 | 6 |
+| C5 | shadow discipline | `design-taste-frontend` §4 | 8 |
+| C6 | spacing scale | `design-taste-frontend` §7 | 6 |
+| C7 | motion library, never-mix | `design-taste-frontend` §5, §10 | 4 |
+| C8 | infinite micro-motion | `design-taste-frontend` §5 | 4 |
+| C9 | emoji policy | `design-taste-frontend` §3 | 5 |
+| C10 | placeholder-content bans | `design-taste-frontend` §9 | 8 |
+| C11 | anti-slop image rules | `imagegen-frontend-web` §8 | 2 |
+| C12 | Variation Engine | `imagegen-frontend-web` §2 | 2 |
+| C13 | do-not-crop rule | `image-to-code` §5 | 2 |
+| C14 | dial baselines | `design-taste-frontend` §7 | 6 |
+| C15 | pre-flight checklist | `design-taste-frontend` §14 | 7 |
+| C16a | eyebrow-label cap | `design-taste-frontend` §4 | 3 |
+| C16b | nested-container ban | `image-to-code` §16 | 2 |
+| C16c | corner-radius consistency | `design-taste-frontend` §4 | 3 |
+| C16d | centered hero | `design-taste-frontend` §4 | 6 |
+| C16e | pure #000000 / #ffffff | `design-taste-frontend` §9 | 3 |
+| C16f | icon library | `design-taste-frontend` §3 | 3 |
+| C16g | hero headline line cap | `design-taste-frontend` §4 | 4 |
+| C16h | grain / noise placement | `design-taste-frontend` §6 | 5 |
+| C17 | v1 rule set restated in `stitch-design-taste` | `design-taste-frontend` overall | 4 |
+
+`design-taste-frontend` owns 11 of the 17 clusters plus 6 of the 8 C16
+sub-items. It was chosen because it is the only skill that already carried an
+override mechanism — explicit exceptions for Inter, emoji, purple, the
+beige-brass palette and the centered hero — so "the canon has declared
+exceptions" is its existing shape, not a new one. C4, C11 and C12 went to
+`imagegen-frontend-web` because its gradient section is the only graded policy
+(an allowed list and a banned list) rather than a flat ban, and because it holds
+the complete Variation Engine of which `image-to-code` §12 is a subset.
+
+**C2 is scoped.** The em-dash ban governs rendered page copy, as §14's wording
+already said. It is not a house style for markdown, specs, READMEs or commit
+messages, and it is not applied to documents a skill writes into someone else's
+project.
+
+### Declared exceptions
+
+17 candidates were reviewed against one test: *does the aesthetic actually need
+this, or do the two rules merely disagree?* Result: **10 granted, 2 refused, 5
+were not conflicts at all.** Each granted exception records the canon it
+replaces, why the look needs it, its trigger, and how pre-flight treats it — in
+the owning skill's `RULE OWNERSHIP` section.
+
+| Skill | Granted | Refused | Not a conflict |
+|---|---|---|---|
+| `industrial-brutalist-ui` | heavy-grotesque / period fonts (C1), scanline gradient (C4), bimodal density (C6) | DOM-root noise filter (C16h) | — |
+| `high-end-visual-design` | glow orbs, hue narrowed (C3), Double-Bezel at 2 levels (C16b), pill primaries (C16c), ultra-light icons (C16f) | eyebrow on every heading (C16a) | inset highlight (C5), section padding (C6) |
+| `minimalist-ui` | pure-white surfaces, paired with an off-white canvas (C16e), Bold/Fill icon weight (C16f) | — | Helvetica as third fallback (C1) |
+| `gpt-taste` | GSAP as the page's single motion library (C7) | — | centered hero (C16d), hero line cap (C16g) |
+
+The two refusals are the point of the test. **C16h** was refused because the
+canon's reason is a performance constraint — "continuous GPU repaints destroy
+mobile FPS" — which sits at P0; the same grain renders identically on a fixed
+`pointer-events-none` layer. **C16a** was refused because an eyebrow above every
+heading is the templated rhythm the mechanical cap exists to catch, and it is
+not what makes that look expensive.
+
+Two granted exceptions carry P0 carve-outs written into them: the GSAP exception
+does not waive the `package.json` dependency check or `prefers-reduced-motion`,
+and the pure-white exception does not extend to pure `#000000`.
+
+### D1–D3
+
+- **D1 — `minimalist-ui` gradients.** The file banned gradients at §2 and then
+  prescribed `radial-gradient` at §6, §7 and §8. Resolved inside the file rather
+  than by exception, because it was a self-contradiction, not a clash with the
+  canon: §2 now bans gradients *as decoration* and states the single carve-out —
+  ambient light at `opacity: 0.02–0.04` on a fixed `pointer-events-none` layer,
+  which is what §6 and §7 already specified.
+- **D2 — infinite micro-motion.** `design-taste-frontend` reversed v1 on this
+  deliberately. `stitch-design-taste` (both files) carried the v1 form and is now
+  aligned to the canon: looping cues for genuinely live state, still cards
+  otherwise. `design-taste-frontend-v1` keeps its original rule — it is a frozen
+  archive and rewriting it would defeat the reason it exists — with a note at the
+  rule naming the divergence and pointing to v2.
+- **D3 — em-dashes in `stitch-design-taste/DESIGN.md`.** Not resolved by
+  stripping the 41 instances. That template is a design-system document emitted
+  into someone's project, and the canon's ban covers page copy. Both stitch files
+  now state that scope explicitly. Applying one skill's page-copy style rule to
+  another project's documentation would have been the wrong fix.
+
+### Pre-flight
+
+All 62 checks are kept. One bundled item — `No AI Tells from Section 9 (Inter as
+default, AI-purple, three-equal cards, Jane Doe, Acme...)`, which was the sole
+verification point for clusters C1, C3 and C10 and their 26 copies — was split
+into four, each tagged for how it is verified. The checklist is now 65 items.
+
+| New item | Verification |
+|---|---|
+| Inter not the default typeface | `[AUTO]` |
+| No AI-purple by default | `[AUTO + JUDGMENT]` — a hit is judged, not failed outright |
+| No three-equal-cards block | `[JUDGMENT]` — not greppable |
+| No placeholder-content tells | `[AUTO]` |
+
+**False positives were checked, not assumed.** Searching the bare string `Inter`
+across this library returns 59 hits, almost all of them `Interpretation`,
+`Interactions`, `Interface`, `Internal`, `Interactive`. The check therefore
+specifies a whole-token match inside a `font-family` value, or `font-inter`, or
+`family=Inter` in a Google Fonts URL, and says explicitly not to grep the bare
+string. AI-purple cannot be decided by search at all — a purple brand is
+legitimate under P1 — so that item lists the AI-default violet tokens and leaves
+the verdict to judgment. Three-equal-cards is structural and marked judgment-only.
+
+### Not implemented
+
+Deleting the duplicate text (~370 lines across the 17 clusters) is not part of
+this. The minimal-modification structure leaves copies in place and resolves
+them by priority. Removing them is a separate decision.

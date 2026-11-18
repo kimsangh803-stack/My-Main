@@ -92,7 +92,7 @@ Every screen must work flawlessly across all viewports. **Responsive is not opti
 > **Note:** Stitch generates static screens — it does not animate. This section documents the **intended motion behavior** so that the coding agent (Antigravity, Cursor, etc.) knows exactly how to implement animations when building the exported design into a live product.
 
 - **Physics Engine:** Spring-based exclusively. `stiffness: 100, damping: 20`. No linear easing anywhere. Premium, weighty feel on all interactive elements
-- **Perpetual Micro-Loops:** Every active dashboard component has an infinite-loop state — Pulse on status dots, Typewriter on search bars, Float on feature icons, Shimmer on loading states
+- **Perpetual Micro-Loops:** components whose state is genuinely live carry a looping cue — Pulse on status dots, Shimmer on loading states, a typewriter only where text is actually streaming. Informational cards and feature icons stay still.
 - **Staggered Orchestration:** Lists and grids mount with cascaded delays (`animation-delay: calc(var(--index) * 100ms)`). Waterfall reveals, never instant mount
 - **Layout Transitions:** Smooth re-ordering via shared element IDs. Items swap positions with physics, simulating real-time intelligence
 - **Hardware Rules:** Animate ONLY `transform` and `opacity`. Never `top`, `left`, `width`, `height`. Grain/noise filters on fixed, pointer-events-none pseudo-elements only
@@ -119,3 +119,18 @@ Every screen must work flawlessly across all viewports. **Responsive is not opti
 - No `z-index` spam — use only for Navbar, Modal, Overlay layer contexts
 - No `h-screen` — always `min-h-[100dvh]`
 - No circular loading spinners — skeletal shimmer only
+
+
+---
+
+## RULE OWNERSHIP
+
+This file is a **template**, emitted into a project as its design system. It is
+documentation, not rendered page copy.
+
+- The em-dash ban in `design-taste-frontend` §9.G governs page surfaces only, so
+  it does not apply to this document's prose. Em-dashes here are not defects.
+- The rules in sections 1-9 are copies. Their canonical owner is
+  `design-taste-frontend/SKILL.md` (typography, color, shadow, motion, layout)
+  and `imagegen-frontend-web/SKILL.md` §13 (gradients). Where this template
+  differs, the canon wins.

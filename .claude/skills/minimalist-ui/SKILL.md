@@ -15,7 +15,8 @@ The AI must strictly avoid the following generic web development defaults:
 - DO NOT use generic, thin-line icon libraries like "Lucide", "Feather", or standard "Heroicons".
 - DO NOT use Tailwind's default heavy drop shadows (e.g., `shadow-md`, `shadow-lg`, `shadow-xl`). Shadows must be practically non-existent or heavily customized to be ultra-diffuse and low opacity (< 0.05).
 - DO NOT use primary colored backgrounds for large elements or sections (e.g., no bright blue, green, or red hero sections).
-- DO NOT use gradients, neon colors, or 3D glassmorphism (beyond subtle navbar blurs).
+- DO NOT use gradients as decoration: no neon color ramps, no multi-stop hero washes, no gradient-filled cards or buttons, no 3D glassmorphism (beyond subtle navbar blurs).
+  - Carve-out, and the only one: ambient light. A `radial-gradient` used as a light source is permitted at `opacity: 0.02-0.04` on a `position: fixed; pointer-events: none` layer, per Sections 6 and 7. That is lighting, not decoration. Anything above that opacity, or on a scrolling container, or carrying more than one visible hue, is the banned kind.
 - DO NOT use `rounded-full` (pill shapes) for large containers, cards, or primary buttons.
 - DO NOT use emojis anywhere in code, markup, text content, headings, or alt text. Replace with proper icons or clean SVG primitives.
 - DO NOT use generic placeholder names like "John Doe", "Acme Corp", or "Lorem Ipsum". Use realistic, contextual content.
@@ -83,3 +84,44 @@ When tasked with writing frontend code (HTML, React, Tailwind, Vue) or designing
 5. Add scroll-entry animations to all major content blocks.
 6. Ensure sections have visual depth through imagery, ambient gradients, or subtle textures — no empty flat backgrounds.
 7. Provide code that reflects this high-end, uncluttered, editorial aesthetic natively without requiring manual adjustments.
+
+
+---
+
+## RULE OWNERSHIP
+
+Rules in this file that also appear in other skills are copies. The canonical
+owner of each is listed below. If a copy here differs from its canon, **the
+canon wins** (priority P3 beats P4). See "Shared design rules" in
+`../README.md` for the full priority ladder and the P0 protections that no
+aesthetic exception may override.
+
+| Rule here | Canonical owner |
+|---|---|
+| C1 Helvetica Neue in the font stack (§3) | `design-taste-frontend/SKILL.md` §4 - no conflict, see below |
+| C16e pure #FFFFFF canvas and cards (§4) | `design-taste-frontend/SKILL.md` §9 - **declared exception below** |
+| C16f Phosphor Bold / Fill weights (§6) | `design-taste-frontend/SKILL.md` §3 - **declared exception below** |
+| C4 gradient carve-out (§2, §6, §7) | `imagegen-frontend-web/SKILL.md` §13 - resolved in §2, see D1 in ../README.md |
+
+### DECLARED EXCEPTIONS
+
+These replace the canonical rule, but **only while this skill is the selected
+aesthetic** (priority P2). None of them may override P0: accessibility,
+functional correctness, security, or a required technical constraint.
+
+**Pure white surfaces — overrides C16e (no pure #ffffff).**
+- Why the aesthetic needs it: the Notion / Linear editorial register is built on a true-white card lifted off a warm off-white canvas. Pushing both to off-white removes the only separation this flat, shadowless look has.
+- Trigger: this skill selected, **and the pair is used** - off-white canvas (`#F7F6F3` / `#FBFBFA` / `#F9F9F8`) with `#FFFFFF` surfaces on top. The canon's reason for the rule is "pure values kill depth"; the pair supplies the depth, so the intent is met.
+- At pre-flight: judged on the pair. `#FFFFFF` on `#FFFFFF`, or a pure-white page with no canvas contrast, fails. Pure `#000000` is **not** covered - that half of the canon is unanimous and stands.
+
+**Bold / Fill icon weight — overrides C16f (icon library and weight).**
+- Why the aesthetic needs it: the slightly thicker stroke is what keeps a monochrome, shadowless page from reading as washed out.
+- Trigger: this skill selected. Phosphor is inside the canon's allowed libraries, so this narrows weight only.
+- At pre-flight: icon-library box unchanged; weight judged. Note this is the opposite weight from `high-end-visual-design`; the two are never selected together.
+
+### NOT ACTUALLY A CONFLICT
+
+**C1 Helvetica.** §3 lists `'Helvetica Neue'` as the **third fallback** behind
+SF Pro Display and Geist Sans, not as the design choice. The canon bans
+Helvetica as a chosen face. A fallback entry is not a choice, so no exception is
+registered. If Helvetica is ever promoted to first position, it needs one.

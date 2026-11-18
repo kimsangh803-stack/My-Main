@@ -90,3 +90,52 @@ To prevent the design from appearing purely digital, simulated analog degradatio
 1.  **Grid Determinism:** Utilize `display: grid; gap: 1px;` with contrasting parent/child background colors to generate mathematically perfect, razor-thin dividing lines without complex border declarations.
 2.  **Semantic Rigidity:** Construct the DOM using precise semantic tags (`<data>`, `<samp>`, `<kbd>`, `<output>`, `<dl>`) to accurately reflect the technical nature of the telemetry.
 3.  **Typography Clamping:** Implement CSS `clamp()` functions exclusively for macro-typography to ensure massive text scales aggressively while maintaining structural integrity across viewports.
+
+
+---
+
+## RULE OWNERSHIP
+
+Rules in this file that also appear in other skills are copies. The canonical
+owner of each is listed below. If a copy here differs from its canon, **the
+canon wins** (priority P3 beats P4). See "Shared design rules" in
+`../README.md` for the full priority ladder and the P0 protections that no
+aesthetic exception may override.
+
+| Rule here | Canonical owner |
+|---|---|
+| C1 optimal web fonts (§3) | `design-taste-frontend/SKILL.md` §4 - **declared exception below** |
+| C4 gradients prohibited (§4) | `imagegen-frontend-web/SKILL.md` §13 - **declared exception below** |
+| C6 bimodal density (§5) | `design-taste-frontend/SKILL.md` §7 - **declared exception below** |
+| C16h mechanical noise (§7) | `design-taste-frontend/SKILL.md` §6 - **exception refused, see below** |
+
+### DECLARED EXCEPTIONS
+
+These replace the canonical rule, but **only while this skill is the selected
+aesthetic** (priority P2). None of them may override P0: accessibility,
+functional correctness, security, or a required technical constraint.
+
+**Heavy grotesques and period serifs — overrides C1 (Inter / Roboto / Times are banned by default).**
+- Why the aesthetic needs it: this look is Swiss print plus military terminal. It is built from heavy neo-grotesques (Neue Haas Grotesk Black, Archivo Black, Monument Extended) and, for the dossier archetype, period serifs. Inter at Extra Bold / Black and Roboto Flex Heavy belong to that set; the canon bans Inter as a *default body face at regular weight*, which is a different use. Times New Roman is period-correct for a declassified document.
+- Trigger: this skill selected, and the weight actually used is Black / Extra Bold / Heavy. Times New Roman only in the dossier / declassified archetype.
+- At pre-flight: the `[AUTO] Inter is not the default typeface` box passes if every Inter instance is at those weights. An Inter instance at 400-600 is still a failure.
+
+**Scanline texture — overrides C4 (decorative gradients banned).**
+- Why the aesthetic needs it: `repeating-linear-gradient` here is a CRT scanline generator, not a color wash. There is no other CSS primitive for it.
+- Trigger: this skill selected, and the gradient is a repeating one-hue scanline or halftone pattern.
+- At pre-flight: judged, not grepped. A multi-stop or multi-hue gradient is not covered by this exception.
+
+**Bimodal density — overrides C6 (dial-conditional spacing).**
+- Why the aesthetic needs it: the look depends on oscillation between cockpit-dense data and vast calculated negative space. A uniform section-padding floor flattens exactly the contrast that defines it.
+- Trigger: this skill selected.
+- At pre-flight: the hero `pt-24` cap still applies; section padding is judged against the stated oscillation instead of a floor.
+
+### EXCEPTION REFUSED
+
+**DOM-root noise filter — C16h stands.** The canon (`design-taste-frontend` §6)
+requires grain on fixed `pointer-events-none` pseudo-elements and never on
+scrolling containers, because continuous GPU repaints destroy mobile FPS. That
+is a required technical constraint, so it sits at P0 and no aesthetic exception
+reaches it. Section 7's "applied to the DOM root" wording is not granted an
+exception: render the same unified grain on a `fixed inset-0 pointer-events-none`
+layer, which is visually equivalent and does not repaint on scroll.

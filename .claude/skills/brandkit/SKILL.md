@@ -796,3 +796,21 @@ The final result should be:
 - art-directed
 - implementation-friendly
 - stronger than normal AI-generated brand visuals
+
+
+---
+
+## RULE OWNERSHIP
+
+Rules in this file that also appear in other skills are copies. The canonical
+owner of each is listed below. If a copy here differs from its canon, **the
+canon wins** (priority P3 beats P4). See "Shared design rules" in
+`../README.md` for the full priority ladder and the P0 protections that no
+aesthetic exception may override.
+
+| Rule here | Canonical owner |
+|---|---|
+| C3 no generic purple-blue AI glow | `design-taste-frontend/SKILL.md` §4 |
+| C10 anti-generic content rules | `design-taste-frontend/SKILL.md` §9 |
+
+Logo concepting, board composition, the 3x3 panel system and the visual modes are unique to this file.

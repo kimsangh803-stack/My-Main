@@ -985,3 +985,23 @@ Generate frontend reference images that feel:
 - implementation-friendly
 
 The result should look like a top-tier website concept with strong imagery, confident creativity, and generous spacing - not a dense, repetitive AI layout.
+
+
+---
+
+## RULE OWNERSHIP
+
+Rules in this file that also appear in other skills are copies. The canonical
+owner of each is listed below. If a copy here differs from its canon, **the
+canon wins** (priority P3 beats P4). See "Shared design rules" in
+`../README.md` for the full priority ladder and the P0 protections that no
+aesthetic exception may override.
+
+| Rule here | Canonical owner |
+|---|---|
+| C4 gradient policy (allowed / banned lists, §13) | **this file** - canonical owner |
+| C11 anti-AI-slop image rules (§8) | **this file** - canonical owner |
+| C12 Combinatorial Variation Engine (§2) | **this file** - canonical owner; `image-to-code` §12 is a subset |
+| C10 placeholder-content bans (§8) | `design-taste-frontend/SKILL.md` §9 |
+
+C4 is owned here because this file carries the only graded policy - an explicit allowed list and an explicit banned list - rather than a flat ban. Code-writing skills should follow it too.

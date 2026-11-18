@@ -89,7 +89,7 @@ Every design must work across all viewports:
 
 ### 8. Encode Motion Philosophy
 - **Spring Physics default:** `stiffness: 100, damping: 20` — premium, weighty feel. No linear easing
-- **Perpetual Micro-Interactions:** Every active component should have an infinite loop state (Pulse, Typewriter, Float, Shimmer)
+- **Perpetual Micro-Interactions:** motion that loops is for components whose state is genuinely live - status dots, loading shimmer, a streaming value. Informational cards stay still. (Carried over from v1 as "every active component should have an infinite loop state"; `design-taste-frontend` reversed that, and this is the reversed form.)
 - **Staggered Orchestration:** Never mount lists instantly — use cascade delays for waterfall reveals
 - **Performance:** Animate exclusively via `transform` and `opacity`. Never animate `top`, `left`, `width`, `height`. Grain/noise filters on fixed pseudo-elements only
 
@@ -182,3 +182,34 @@ no generic placeholder names, no broken image links.)
 - Being too vague in atmosphere descriptions
 - Ignoring the anti-pattern list — these are what make the output premium
 - Defaulting to generic "safe" designs instead of enforcing the curated aesthetic
+
+
+---
+
+## RULE OWNERSHIP
+
+Rules in this file that also appear in other skills are copies. The canonical
+owner of each is listed below. If a copy here differs from its canon, **the
+canon wins** (priority P3 beats P4). See "Shared design rules" in
+`../README.md` for the full priority ladder and the P0 protections that no
+aesthetic exception may override.
+
+| Rule here | Canonical owner |
+|---|---|
+| C1 Inter / generic-serif bans | `design-taste-frontend/SKILL.md` §4 |
+| C3 AI-purple ban | `design-taste-frontend/SKILL.md` §4 |
+| C5 shadow values | `design-taste-frontend/SKILL.md` §4 |
+| C8 perpetual micro-loops | `design-taste-frontend/SKILL.md` §5 - **aligned to the canon in this file** |
+| C9 emoji ban | `design-taste-frontend/SKILL.md` §3 |
+| C10 placeholder-content bans | `design-taste-frontend/SKILL.md` §9 |
+| C14 dial baselines | `design-taste-frontend/SKILL.md` §7 |
+| C16d centered-hero ban | `design-taste-frontend/SKILL.md` §4 |
+
+Much of the rule text here was carried over from `design-taste-frontend-v1`. The
+canon is the v2 file; where this file's wording differs, follow the canon.
+
+**The em-dash ban (C2) does not apply to this skill's output.** `DESIGN.md` is a
+design-system document, not rendered page copy. The canon scopes that ban to
+page surfaces. Do not strip em-dashes from a spec, a README or any other prose
+this skill writes into someone's project - that would be imposing one skill's
+page-copy rule on another project's documentation.

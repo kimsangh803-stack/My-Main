@@ -972,7 +972,10 @@ Run this matrix before outputting code. This is the last filter.
 - [ ] **Cards omitted** in favor of spacing where possible?
 - [ ] **Icons** from an allowed library only (Phosphor / HugeIcons / Radix / Tabler), no hand-rolled SVG paths?
 - [ ] **Motion** isolated in client-leaf components with `'use client'` at the top, memoized?
-- [ ] **No AI Tells** from Section 9 (Inter as default, AI-purple, three-equal cards, Jane Doe, Acme, "Quietly in use at")?
+- [ ] **[AUTO] Inter is not the default typeface**: search `font-family` values and Tailwind font classes for Inter as a whole token (`\bInter\b` inside a `font-family` value, `font-inter`, `family=Inter` in a Google Fonts URL). Do NOT search for the bare string `Inter` - it matches Interface, Interaction, Interpretation, Internal and produces false positives. Permitted by the Section 4 override (neutral / Linear-style / accessibility-first brief), or when a selected aesthetic skill declares it - see RULE OWNERSHIP in that skill.
+- [ ] **[AUTO + JUDGMENT] No AI-purple by default**: search for the AI-default violet tokens (`#8b5cf6`, `#a855f7`, `#7c3aed`, `#6366f1`, and Tailwind `violet-*` / `purple-*` / `indigo-*` used on backgrounds, gradients or glows). A hit is NOT automatically a failure: it passes when the brand or brief asks for purple (Section 4 override) or a selected aesthetic skill declares a glow treatment. A hit with neither reason fails.
+- [ ] **[JUDGMENT] No three-equal-cards block**: read each feature / benefit / pricing section. Three cards of equal width carrying the same content shape is the LLM default - restructure it (asymmetric bento, 2+1 split, or a list) or justify it in one sentence. Not greppable; counting sibling elements with identical class strings is a hint, not a verdict.
+- [ ] **[AUTO] No placeholder-content tells**: search for `Acme`, `Jane Doe`, `John Doe`, `Quietly in use at`, `+1 (312) 847-1928`, `47.2%` (Section 9 content bans).
 - [ ] **Core Web Vitals** plausibly hit (LCP < 2.5s, INP < 200ms, CLS < 0.1)?
 - [ ] **One design system** per project (no Material + shadcn mixed)?
 
@@ -1204,3 +1207,43 @@ But that is **web glassmorphism / frosted-glass approximation**, not official Ap
 ---
 
 **End of appendices.** Install commands above are reality anchors. The Apple Liquid Glass skeleton is a labeled approximation, not an Apple-issued package. For canonical docs per design system, consult the system's official docs (links in Section 2 plus Appendix B).
+
+
+---
+
+## RULE OWNERSHIP
+
+This skill is the **canonical owner** of the shared design rules listed below.
+Copies live in other skills; where a copy differs, this file wins (P3 over P4).
+See "Shared design rules" in `../README.md`.
+
+| Cluster | Rule | Here |
+|---|---|---|
+| C1 | banned typefaces / Inter | §4, override at "Inter is acceptable when..." |
+| C2 | em-dash ban | §9.G |
+| C3 | AI-purple / LILA | §4, override at "if the brand or brief explicitly asks for purple" |
+| C5 | shadow discipline | §4 |
+| C6 | spacing scale (dial-conditional) | §7 |
+| C7 | motion library, never-mix | §5, §10 |
+| C8 | infinite micro-motion | §5 ("Not every card needs an infinite loop") |
+| C9 | emoji policy | §3, with override |
+| C10 | placeholder-content bans | §9 |
+| C14 | dial baselines | §7 |
+| C15 | pre-flight checklist | §14 |
+| C16a | eyebrow-label cap | §4 (mechanical count) |
+| C16c | corner-radius consistency | §4 |
+| C16d | centered hero | §4, override for editorial / manifesto / launch briefs |
+| C16e | pure #000000 / #ffffff | §9 |
+| C16f | icon library | §3 |
+| C16g | hero headline line cap | §4 |
+| C16h | grain / noise placement | §6 |
+
+**Scope of the em-dash ban (C2).** It governs **rendered page copy** - headlines,
+eyebrows, pills, body, quotes, attribution, captions, buttons, alt text, as §14
+states. It is not a house style for markdown documents, commit messages, READMEs
+or design-system specs produced alongside the page. Do not apply it to another
+project's prose.
+
+Not owned here: C4 gradients (`imagegen-frontend-web` §13), C11 anti-slop image
+rules and C12 variation engine (same file, §8 and §2), C13 crop ban and C16b
+nested containers (`image-to-code` §5 and §16).

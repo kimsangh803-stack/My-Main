@@ -96,3 +96,65 @@ Evaluate your code against this matrix before delivering. This is the last filte
 - [ ] All animations use only `transform` and `opacity` — no layout-triggering properties
 - [ ] `backdrop-blur` is only applied to fixed/sticky elements, never to scrolling content
 - [ ] The overall impression reads as "$150k agency build", not "template with nice fonts"
+
+
+---
+
+## RULE OWNERSHIP
+
+Rules in this file that also appear in other skills are copies. The canonical
+owner of each is listed below. If a copy here differs from its canon, **the
+canon wins** (priority P3 beats P4). See "Shared design rules" in
+`../README.md` for the full priority ladder and the P0 protections that no
+aesthetic exception may override.
+
+| Rule here | Canonical owner |
+|---|---|
+| C3 radial mesh gradients, glowing purple orbs (§3) | `design-taste-frontend/SKILL.md` §4 - **declared exception below** |
+| C5 inset highlight shadow (§4) | `design-taste-frontend/SKILL.md` §4 - no conflict, see below |
+| C6 py-24 to py-40 section padding (§5, §8) | `design-taste-frontend/SKILL.md` §7 - no conflict, see below |
+| C16a eyebrow tags on major headings (§5) | `design-taste-frontend/SKILL.md` §4 - **exception refused, see below** |
+| C16b nested enclosures / Double-Bezel (§4) | `image-to-code/SKILL.md` §16 - **declared exception below** |
+| C16c rounded-full primary buttons (§4) | `design-taste-frontend/SKILL.md` §4 - **declared exception below** |
+| C16f ultra-light icon weight (§2) | `design-taste-frontend/SKILL.md` §3 - **declared exception below** |
+
+### DECLARED EXCEPTIONS
+
+These replace the canonical rule, but **only while this skill is the selected
+aesthetic** (priority P2). None of them may override P0: accessibility,
+functional correctness, security, or a required technical constraint.
+
+**Glow orbs — overrides C3 (AI-purple banned) in form, not in hue.**
+- Why the aesthetic needs it: the Ethereal Glass archetype is defined by light sources behind glass. Remove the glow and the look collapses into flat dark mode.
+- Trigger: this skill selected. The glow treatment is granted; **the AI-default violet/blue hue is not.** Pick the hue from the brief - emerald, amber, cyan, a brand color. Purple is available only through the canon's own override, i.e. the brand or brief asks for it.
+- At pre-flight: the `[AUTO + JUDGMENT] No AI-purple by default` box treats a violet hit here as a failure unless the brief named purple. A non-violet glow passes.
+
+**Double-Bezel — overrides C16b (no cards-inside-cards-inside-cards).**
+- Why the aesthetic needs it: the machined-hardware feel comes from an outer shell plus an inner core. That is the mechanism, not decoration.
+- Trigger: this skill selected, and nesting is **exactly two levels** - shell plus core, as §4 describes. The canon bans three or more, so at two levels there is no actual conflict; a third level is not covered.
+- At pre-flight: count nesting depth on cards. Three or more fails even with this skill selected.
+
+**Pill buttons — overrides C16c (one radius system).**
+- Why the aesthetic needs it: `rounded-full` primaries are part of this look's component language.
+- Trigger: this skill selected, and pills are applied to primary buttons **consistently across the page**. The canon's Shape Consistency Lock still holds: one radius system, so pills everywhere or nowhere, not mixed with square primaries.
+- At pre-flight: the Shape Consistency Lock box is judged against "pills are this page's system", not relaxed.
+
+**Ultra-light icons — overrides C16f (allowed icon libraries).**
+- Why the aesthetic needs it: hairline iconography is a defining detail of the look.
+- Trigger: this skill selected. Phosphor Light and Remix Line are both inside the canon's allowed libraries, so this narrows weight rather than leaving the library set.
+- At pre-flight: the icon-library box is unchanged; weight is judged.
+
+### NOT ACTUALLY CONFLICTS
+
+- **C5 inset highlight.** §4's `inset 0 1px 1px rgba(255,255,255,.15)` is a bezel highlight, a different mechanism from the drop shadow the canon governs. No exception needed.
+- **C6 section padding.** The canon makes spacing conditional on the density dial. This skill pins density low, and `py-24` to `py-40` is what the canon prescribes at that setting. Agreement, not conflict - so no exception is registered.
+
+### EXCEPTION REFUSED
+
+**Eyebrow tags on every major heading — C16a stands.** The canon caps
+`uppercase tracking` micro-labels at `ceil(sectionCount / 3)` and counts them
+mechanically. An eyebrow above *every* H1/H2 is the templated rhythm that cap
+exists to stop, and it is not what makes this look expensive - the glass,
+bezels, glow and padding are. An exception was not granted merely because the
+two rules disagree. Use eyebrows within the cap; style them as this skill
+specifies.

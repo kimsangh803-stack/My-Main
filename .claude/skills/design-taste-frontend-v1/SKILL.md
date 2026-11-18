@@ -205,6 +205,7 @@ All cards must contain **"Perpetual Micro-Interactions."** Use the following Fra
 * **Spring Physics:** No linear easing. Use `type: "spring", stiffness: 100, damping: 20` for a premium, weighty feel.
 * **Layout Transitions:** Heavily utilize the `layout` and `layoutId` props to ensure smooth re-ordering, resizing, and shared element state transitions.
 * **Infinite Loops:** Every card must have an "Active State" that loops infinitely (Pulse, Typewriter, Float, or Carousel) to ensure the dashboard feels "alive".
+  * **v1/v2 divergence - read before applying.** `design-taste-frontend` (v2) reversed this rule on purpose: "Not every card needs an infinite loop. If a section is informational, leave it still," and it lists infinite-loop micro-animations everywhere among the LLM defaults to reach past. This file is a frozen v1 archive, so the rule above is left as v1 shipped it. If you are not deliberately pinned to v1, follow v2.
 * **Performance:** Wrap dynamic lists in `<AnimatePresence>` and optimize for 60fps. **PERFORMANCE CRITICAL:** Any perpetual motion or infinite loop MUST be memoized (React.memo) and completely isolated in its own microscopic Client Component. Never trigger re-renders in the parent layout.
 
 ### C. The 5-Card Archetypes (Micro-Animation Specs)
@@ -224,3 +225,27 @@ Evaluate your code against this matrix before outputting. This is the **last** f
 - [ ] Are empty, loading, and error states provided?
 - [ ] Are cards omitted in favor of spacing where possible?
 - [ ] Did you strictly isolate CPU-heavy perpetual animations in their own Client Components?
+
+
+---
+
+## RULE OWNERSHIP
+
+Rules in this file that also appear in other skills are copies. The canonical
+owner of each is listed below. If a copy here differs from its canon, **the
+canon wins** (priority P3 beats P4). See "Shared design rules" in
+`../README.md` for the full priority ladder and the P0 protections that no
+aesthetic exception may override.
+
+| Rule here | Canonical owner |
+|---|---|
+| C1 Inter ban (§7) | `design-taste-frontend/SKILL.md` §4 |
+| C3 LILA ban (§3) | `design-taste-frontend/SKILL.md` §4 |
+| C8 perpetual / infinite motion (§4, §9) | `design-taste-frontend/SKILL.md` §5 - **reversed in v2, see the note at §9** |
+| C9 anti-emoji policy (§3) | `design-taste-frontend/SKILL.md` §3 |
+| C10 placeholder-content bans (§7) | `design-taste-frontend/SKILL.md` §9 |
+| C14 dial baselines (§1, §6) | `design-taste-frontend/SKILL.md` §7 |
+| C15 pre-flight check (§10) | `design-taste-frontend/SKILL.md` §14 |
+| C16d anti-center bias (§3) | `design-taste-frontend/SKILL.md` §4 |
+
+This file is a **frozen v1 archive**. Its rules are left exactly as v1 shipped them, which is the point of keeping it. The table above is a map, not a change: if you are not deliberately pinned to v1, use `design-taste-frontend`.

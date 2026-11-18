@@ -1463,3 +1463,22 @@ It should actively avoid:
 - oversized device framing that distracts from the design
 
 The final result should look like a high-end mobile app concept with clean hierarchy, good flow logic, strong visual taste, richer image direction, a clean controlled color palette, non-generic art direction, strong multi-screen consistency, readable typography, premium phone mockup framing, and clear platform-aware structure.
+
+
+---
+
+## RULE OWNERSHIP
+
+Rules in this file that also appear in other skills are copies. The canonical
+owner of each is listed below. If a copy here differs from its canon, **the
+canon wins** (priority P3 beats P4). See "Shared design rules" in
+`../README.md` for the full priority ladder and the P0 protections that no
+aesthetic exception may override.
+
+| Rule here | Canonical owner |
+|---|---|
+| C3 AI-purple ban | `design-taste-frontend/SKILL.md` §4 |
+| C10 placeholder-content bans (§21) | `design-taste-frontend/SKILL.md` §9 |
+| C13 do-not-crop rule (§5) | `image-to-code/SKILL.md` §5 |
+
+Everything mobile-specific here - safe areas, device frames, platform mode, onboarding flow - is unique to this file.

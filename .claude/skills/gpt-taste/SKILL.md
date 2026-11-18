@@ -72,3 +72,43 @@ Before writing ANY React/UI code, you MUST output a `<design_plan>` block contai
 4. **Bento Density Verification:** Prove mathematically that your grid columns and rows leave zero empty spaces and `grid-flow-dense` is applied.
 5. **Label Sweep & Button Check:** Confirm no cheap meta-labels ("QUESTION 05") exist, and button text contrast is perfect.
 Only output the UI code after this rigorous verification is complete.
+
+
+---
+
+## RULE OWNERSHIP
+
+Rules in this file that also appear in other skills are copies. The canonical
+owner of each is listed below. If a copy here differs from its canon, **the
+canon wins** (priority P3 beats P4). See "Shared design rules" in
+`../README.md` for the full priority ladder and the P0 protections that no
+aesthetic exception may override.
+
+| Rule here | Canonical owner |
+|---|---|
+| C7 GSAP mandated for all interaction (§5) | `design-taste-frontend/SKILL.md` §10 - **declared exception below** |
+| C16d Cinematic Center hero (§3) | `design-taste-frontend/SKILL.md` §4 - no conflict, see below |
+| C16g hero 2-3 line cap (§3) | `design-taste-frontend/SKILL.md` §4 - no conflict, see below |
+| C4 grainy mesh gradients (§6) | `imagegen-frontend-web/SKILL.md` §13 |
+| C9 emoji ban (§1) | `design-taste-frontend/SKILL.md` §3 |
+
+### DECLARED EXCEPTIONS
+
+These replace the canonical rule, but **only while this skill is the selected
+aesthetic** (priority P2). None of them may override P0: accessibility,
+functional correctness, security, or a required technical constraint.
+
+**GSAP as the motion library — overrides C7 (Motion for UI, GSAP for scrolltelling only).**
+- Why the aesthetic needs it: this skill exists for scroll choreography - pinning, stacking, scrubbing. ScrollTrigger is the tool for that, and the canon's own split already assigns scrolltelling to GSAP. The exception is the extension to card and hover interaction so one library drives the whole page, because mixing Motion and GSAP in one tree is what the canon forbids.
+- Trigger: this skill selected, and the brief asked for heavy scroll motion.
+- At pre-flight: the never-mix rule still holds - GSAP everywhere, Motion nowhere, not both. **Two P0 items are untouched:** the dependency check (confirm GSAP is in `package.json`; never assume a library exists) and `prefers-reduced-motion` honored for everything above MOTION_INTENSITY 3. Neither is waived by this exception.
+
+### NOT ACTUALLY CONFLICTS
+
+- **C16d centered hero.** The canon already permits it for editorial, manifesto
+  and launch-announcement briefs. Cinematic Center is available through that
+  override when the brief is one of those; it is not granted as a standing
+  default, because center alignment is not what makes scroll choreography work.
+- **C16g hero line cap.** The canon's 2 lines is *stricter* than this file's
+  "never exceed 2 to 3". Satisfying the canon satisfies this file. No exception
+  needed.
